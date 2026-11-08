@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BLG vs T1</title>
+  <meta name="description" content="BLG vs T1 观赛记录" />
+  <style>
+    :root{
+      --blg:#3b82f6;
+      --t1:#e11d48;
+      --bg:#07080f;
+      --card:rgba(255,255,255,.05);
+      --line:rgba(255,255,255,.12);
+      --text:#e8ecf5;
+      --muted:#8792a8;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      min-height:100vh;
+      background:
+        radial-gradient(1000px 620px at 12% -10%, rgba(59,130,246,.28), transparent 62%),
+        radial-gradient(900px 560px at 88% 112%, rgba(225,29,72,.24), transparent 62%),
+        var(--bg);
+      color:var(--text);
+      font-family:"Segoe UI","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:24px;padding:40px 20px;
+    }
+    .tag{
+      font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
+      border:1px solid var(--line);padding:8px 18px;border-radius:999px;
+    }
+    .board{
+      width:100%;max-width:840px;
+      background:var(--card);border:1px solid var(--line);border-radius:28px;
+      padding:48px 26px 40px;
+      display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;
+      backdrop-filter:blur(14px);
+      box-shadow:0 30px 90px rgba(0,0,0,.6);
+    }
+    .team{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;}
+    .logo{
+      width:76px;height:76px;border-radius:22px;display:grid;place-items:center;
+      font-weight:900;font-size:21px;letter-spacing:-.5px;border:1px solid rgba(255,255,255,.18);
+    }
+    .blg .logo{background:linear-gradient(160deg,rgba(59,130,246,.5),rgba(59,130,246,.06));color:#cfe0ff;}
+    .t1  .logo{background:linear-gradient(160deg,rgba(225,29,72,.5),rgba(225,29,72,.06));color:#ffd3dc;}
+    .team h2{font-size:clamp(19px,4.4vw,30px);letter-spacing:.04em;white-space:nowrap;}
+    .team small{color:var(--muted);font-size:11px;letter-spacing:.18em;}
+    .score-wrap{display:flex;align-items:baseline;gap:6px;padding:0 clamp(6px,2vw,18px);}
+    .score{font-size:clamp(42px,11vw,92px);font-weight:900;line-height:1;font-variant-numeric:tabular-nums;}
+    .dash{font-size:clamp(22px,6vw,44px);color:var(--muted);font-weight:300;padding-bottom:.12em;}
+    .status{
+      display:inline-flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);
+      border:1px solid var(--line);padding:9px 20px;border-radius:999px;
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:#fbbf24;animation:pulse 2s infinite;}
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(251,191,36,.6);}
+      70%{box-shadow:0 0 0 12px rgba(251,191,36,0);}
+      100%{box-shadow:0 0 0 0 rgba(251,191,36,0);}
+    }
+    .meta{font-size:12px;color:var(--muted);text-align:center;line-height:2;}
+    .meta code{background:rgba(255,255,255,.07);padding:2px 7px;border-radius:6px;font-size:11px;}
+    @media(max-width:520px){
+      .board{padding:34px 14px 30px;gap:2px;}
+      .logo{width:58px;height:58px;border-radius:17px;font-size:16px;}
+      .team{gap:8px;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tag">Worlds · Final</div>
+
+  <div class="board">
+    <div class="team blg">
+      <div class="logo">BLG</div>
+      <h2>BLG</h2>
+      <small>LPL</small>
+    </div>
+
+    <!-- ⬇️ 比分在这里改：改完 push，页面一分钟后自动更新 -->
+    <div class="score-wrap">
+      <span class="score" id="blg-score">0</span>
+      <span class="dash">:</span>
+      <span class="score" id="t1-score">0</span>
+    </div>
+
+    <div class="team t1">
+      <div class="logo">T1</div>
+      <h2>T1</h2>
+      <small>LCK</small>
+    </div>
+  </div>
+
+  <div class="status"><span class="dot"></span>未开赛</div>
+
+  <div class="meta">
+    改比分：编辑 <code>index.html</code> 里 <code>id="blg-score"</code> 和 <code>id="t1-score"</code> 的数字<br />
+    然后 <code>git add . &amp;&amp; git commit -m "比分更新" &amp;&amp; git push</code>
+  </div>
+
+</body>
+</html>
